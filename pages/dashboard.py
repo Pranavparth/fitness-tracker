@@ -56,6 +56,14 @@ def layout():
         except (ValueError, TypeError):
            latest_deficit = "N/A"
 
+    def get_bmi_category(bmi_val):
+        if bmi_val == "N/A": return ""
+        b = float(bmi_val)
+        if b < 18.5: return "Underweight"
+        if 18.5 <= b <= 24.9: return "Normal"
+        if 25.0 <= b <= 29.9: return "Overweight"
+        return "Obese"
+
     def make_card(title, value, sub="", positive=None):
         sub_class = "metric-sub"
         if positive is True:
@@ -76,7 +84,12 @@ def layout():
     cards = dbc.Row(
         [
             dbc.Col(make_card("Weight", f"{latest_weight} kg" if latest_weight != "N/A" else "--"), width=6, className="mb-3"),
-            dbc.Col(make_card("BMI", f"{latest_bmi:.1f}" if latest_bmi != "N/A" else "--"), width=6, className="mb-3"),
+            dbc.Col(make_card(
+                "BMI", 
+                f"{latest_bmi:.1f}" if latest_bmi != "N/A" else "--",
+                sub=get_bmi_category(latest_bmi),
+                positive=True if (latest_bmi != "N/A" and 18.5 <= float(latest_bmi) <= 24.9) else False if latest_bmi != "N/A" else None
+            ), width=6, className="mb-3"),
             dbc.Col(make_card("Intake", f"{latest_cals:.0f}" if latest_cals != "N/A" else "--", sub="kcal today"), width=6),
             dbc.Col(make_card(
                 "Deficit", 
