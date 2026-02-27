@@ -1,5 +1,5 @@
 import dash
-from dash import dcc, html, Input, Output, State
+from dash import dcc, html, Input, Output, State, ALL, ctx
 import dash_bootstrap_components as dbc
 from flask import request, jsonify
 import database as db
@@ -87,15 +87,51 @@ def create_bottom_nav():
                 href="/logs",
                 className="nav-link",
                 id="nav-logs"
-            )
+            ),
+            # Add a button for Settings instead of a link
+            html.Div(
+                [html.I(className="bi bi-gear"), "Settings"],
+                className="nav-link",
+                id="open-settings-modal",
+                n_clicks=0,
+                style={"cursor": "pointer"}
+            ),
         ],
         className="bottom-nav"
     )
+
+# --- SETTINGS MODAL ---
+settings_modal = dbc.Modal(
+    [
+        dbc.ModalHeader(dbc.ModalTitle("User Settings")),
+        dbc.ModalBody(
+            [
+                html.Label("Height (cm)"),
+                dbc.Input(id="settings-height", type="number", className="mb-3"),
+                
+                html.Label("Maintenance Calories (Daily Goal)"),
+                dbc.Input(id="settings-calories", type="number", className="mb-3"),
+                
+                html.Div(id="settings-msg", className="text-success mt-2", style={"display": "none"})
+            ]
+        ),
+        dbc.ModalFooter(
+            [
+                dbc.Button("Close", id="close-settings-modal", className="ms-auto", n_clicks=0),
+                dbc.Button("Save Changes", id="save-settings-btn", color="primary", n_clicks=0),
+            ]
+        ),
+    ],
+    id="modal",
+    is_open=False,
+    centered=True,
+)
 
 # Define the main application layout
 app.layout = html.Div(
     [
         dcc.Location(id='url', refresh=False),
+        settings_modal,
         html.Div(
             [
                 dash.page_container
@@ -115,6 +151,40 @@ def update_active_links(pathname):
     if pathname == "/logs":
         return "nav-link", "nav-link active"
     return "nav-link active", "nav-link"
+
+# Settings Modal Logic
+@app.callback(
+    Output("modal", "is_open"),
+    Output("settings-height", "value"),
+    Output("settings-calories", "value"),
+    Output("settings-msg", "children"),
+    Output("settings-msg", "style"),
+    Input("open-settings-modal", "n_clicks"),
+    Input("close-settings-modal", "n_clicks"),
+    Input("save-settings-btn", "n_clicks"),
+    State("modal", "is_open"),
+    State("settings-height", "value"),
+    State("settings-calories", "value")
+)
+def toggle_modal(n1, n2, n_save, is_open, height, calories):
+    triggered_id = ctx.triggered_id
+    
+    # 1. Open the modal and load settings from DB
+    if triggered_id == "open-settings-modal":
+        user = db.get_user_settings()
+        return True, user.get('height_cm'), user.get('maintenance_calories'), "", {"display": "none"}
+        
+    # 2. Save new settings to DB
+    elif triggered_id == "save-settings-btn":
+        if height and calories:
+            db.update_user_settings(height_cm=float(height), maintenance_calories=int(calories))
+            return True, height, calories, "Settings saved successfully! Refresh page to see changes.", {"display": "block", "color": "#4ECDC4"}
+            
+    # 3. Close modal
+    elif triggered_id == "close-settings-modal":
+        return False, dash.no_update, dash.no_update, "", {"display": "none"}
+        
+    return is_open, dash.no_update, dash.no_update, dash.no_update, dash.no_update
 
 if __name__ == "__main__":
     app.run(debug=True, port=8050, host='0.0.0.0')
