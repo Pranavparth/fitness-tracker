@@ -1,0 +1,183 @@
+/* Main App Background and Typography */
+body {
+    background-color: #0E1117;
+    color: #FFFFFF;
+    font-family: 'Inter', 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+    /* iOS Web App adjustments */
+    -webkit-tap-highlight-color: transparent;
+    padding-bottom: 80px;
+    /* Space for bottom nav */
+}
+
+/* Scrollbar customization */
+::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+}
+
+::-webkit-scrollbar-track {
+    background: #0E1117;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #2D313A;
+    border-radius: 4px;
+}
+
+/* Premium Gradient Text */
+.premium-title {
+    background: linear-gradient(45deg, #FF6B6B, #4ECDC4);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: 800;
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+/* Bottom Navigation (Mobile First) */
+.bottom-nav {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: rgba(22, 26, 34, 0.85);
+    /* Glassmorphism */
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    z-index: 1000;
+    display: flex;
+    justify-content: space-around;
+    padding: 10px 0 calc(10px + env(safe-area-inset-bottom));
+    /* iOS safe area */
+}
+
+.bottom-nav .nav-link {
+    color: #8B949E;
+    text-align: center;
+    font-size: 0.75rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 5px 10px;
+    border-radius: 12px;
+    text-decoration: none;
+    transition: all 0.2s ease;
+}
+
+.bottom-nav .nav-link i {
+    font-size: 1.5rem;
+    margin-bottom: 4px;
+}
+
+.bottom-nav .nav-link:hover,
+.bottom-nav .nav-link.active {
+    color: #4ECDC4;
+    background-color: rgba(78, 205, 196, 0.1);
+}
+
+/* Hide sidebar on all screens, rely on bottom nav */
+.sidebar {
+    display: none;
+}
+
+/* Content Area */
+.content {
+    margin-left: 0;
+    padding: 1rem;
+    padding-top: env(safe-area-inset-top);
+    /* iOS safe area */
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+/* Dashboard Metric Cards */
+.metric-card {
+    background-color: rgba(30, 33, 41, 0.7);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 16px;
+    padding: 1.2rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    height: 100%;
+    margin-bottom: 1rem;
+}
+
+.metric-title {
+    color: #A0AABF;
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 0.25rem;
+}
+
+.metric-value {
+    color: #FFFFFF;
+    font-size: 1.75rem;
+    font-weight: 700;
+}
+
+.metric-sub {
+    font-size: 0.8rem;
+    margin-top: 0.2rem;
+}
+
+.metric-positive {
+    color: #4ECDC4;
+}
+
+.metric-negative {
+    color: #FF6B6B;
+}
+
+/* Form Styling */
+.form-control,
+.form-select {
+    background-color: #1E2129 !important;
+    border: 1px solid #2D313A !important;
+    color: #FFFFFF !important;
+    border-radius: 12px;
+    padding: 12px;
+    font-size: 16px;
+    /* Prevents iOS auto-zoom */
+}
+
+.form-control:focus,
+.form-select:focus {
+    border-color: #4ECDC4 !important;
+    box-shadow: 0 0 0 2px rgba(78, 205, 196, 0.2) !important;
+}
+
+/* Submit Buttons */
+.btn-primary {
+    background: linear-gradient(45deg, #4ECDC4, #3bb3ab);
+    border: none !important;
+    color: #0E1117 !important;
+    font-weight: 700;
+    border-radius: 12px;
+    padding: 14px;
+    width: 100%;
+    /* Mobile full width */
+    transition: all 0.2s;
+    box-shadow: 0 4px 10px rgba(78, 205, 196, 0.3);
+}
+
+.btn-primary:active {
+    transform: scale(0.98);
+}
+
+/* Graphs container */
+.graph-container {
+    background-color: rgba(30, 33, 41, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 16px;
+    padding: 0.5rem;
+    margin-bottom: 1rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+}
