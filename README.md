@@ -37,6 +37,12 @@ A mobile-first, cloud-connected data analytics web application designed to autom
 ![IMG_2764](https://github.com/user-attachments/assets/0888d34f-88b5-4d70-9708-413719ece953)
 ![IMG_2765](https://github.com/user-attachments/assets/da9203ad-7b88-4058-97e6-4476855b2f93)
 
+<p align="center">
+  <img src="path/to/your/dashboard.png" alt="Dashboard View" width="250">
+  &nbsp; &nbsp; &nbsp; &nbsp;
+  <img src="path/to/your/settings.png" alt="Settings Modal" width="250">
+</p>
+
 *   **Dashboard View:** Showing the grid metrics and trend charts.
 *   **Settings Modal:** Showing the live database update callback in action.
 
