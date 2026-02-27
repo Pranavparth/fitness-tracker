@@ -32,19 +32,21 @@ A mobile-first, cloud-connected data analytics web application designed to autom
 *   **Hosting:** Render.com
 
 ## 📷 Screenshots
-*![IMG_2762](https://github.com/user-attachments/assets/6be073aa-b262-4d50-9e93-ed2734d7b085)
-![IMG_2763](https://github.com/user-attachments/assets/e455edb6-801a-40a3-9371-04dcedd0d8df)
-![IMG_2764](https://github.com/user-attachments/assets/0888d34f-88b5-4d70-9708-413719ece953)
-![IMG_2765](https://github.com/user-attachments/assets/da9203ad-7b88-4058-97e6-4476855b2f93)
 
 <p align="center">
-  <img src="path/to/your/dashboard.png" alt="Dashboard View" width="250">
+  <img src="https://github.com/user-attachments/assets/6be073aa-b262-4d50-9e93-ed2734d7b085" alt="Dashboard Overview" width="240">
   &nbsp; &nbsp; &nbsp; &nbsp;
-  <img src="path/to/your/settings.png" alt="Settings Modal" width="250">
+  <img src="https://github.com/user-attachments/assets/e455edb6-801a-40a3-9371-04dcedd0d8df" alt="Dashboard Charts" width="240">
+</p>
+
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/0888d34f-88b5-4d70-9708-413719ece953" alt="Journal Top" width="240">
+  &nbsp; &nbsp; &nbsp; &nbsp;
+  <img src="https://github.com/user-attachments/assets/da9203ad-7b88-4058-97e6-4476855b2f93" alt="Journal Bottom" width="240">
 </p>
 
 *   **Dashboard View:** Showing the grid metrics and trend charts.
-*   **Settings Modal:** Showing the live database update callback in action.
+*   **Journal View:** Mobile-optimized data entry forms for weight, nutrition, and workouts.
 
 ## 🚀 How to Run Locally
 
